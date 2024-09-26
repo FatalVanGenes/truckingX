@@ -1,0 +1,16 @@
+build/
+target/
+.idea
+dependency-reduced-pom.xml
+*.jar
+.classpath
+.project
+.settings
+*SESSIONS.SER
+*log4j-application.log
+examples/example_1/deployed/config/_stop
+*.old
+catch.txt
+*.log
+.gradle
+*.puml

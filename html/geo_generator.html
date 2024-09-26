@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>The Map</title>
+<meta charset="utf-8">
+<script language="javascript" src="json/data.json"></script>
+<style>
+.floater {
+  visibility : visible;
+  position : absolute;
+  z-index : 2;
+  border-width : 2px;
+  border-color : gray;
+  border-style : solid;
+  height : 4px;
+  width : 4px;
+}
+</style>
+<script language="javascript">
+var xBound = 800;
+var yBound = 800;
+var canvasWidth = Math.round(xBound * .92); // x
+var canvasHeight = Math.round(yBound * .92); // y
+var xMargin = Math.round(xBound * 0.05);
+var yMargin = Math.round(yBound * 0.05);
+/*
+*/
+
+
+var highX = pointData[0].x;
+var lowX = pointData[0].x;
+var highZ = pointData[0].y;
+var lowZ = pointData[0].y;
+var centerX = 0;
+var centerZ = 0;
+var counter = 0;
+
+for (var index in pointData) {
+  pt = pointData[index];
+  highX = (pt.x > highX) ? pt.x : highX;
+  lowX = (pt.x < lowX) ? pt.x : lowX;
+  highZ = (pt.y > highZ) ? pt.y : highZ;
+  lowZ = (pt.y < lowZ) ? pt.y : lowZ;
+  //if (pt.name == "village") {
+    centerX += pt.x;
+    centerZ += pt.y;
+    counter += 1;
+  //}
+}
+// alert(centerX + ", " + centerZ);
+var stepX = canvasWidth / Math.abs(highX - lowX);
+var stepZ = canvasHeight / Math.abs(highZ - lowZ);
+var stepAny = Math.min(stepX, stepZ);
+stepX = stepZ = stepAny;
+</script>
+</head>
+<body>
+
+
+<script language="javascript">
+var canvas = document.createElement("div");
+canvas.id = "canvas";
+canvas.style.height = yBound;
+canvas.style.width = xBound;
+canvas.style.borderWidth = "1px";
+canvas.style.borderColor = "black";
+canvas.style.borderStyle = "solid";
+canvas.style.position = "absolute";
+canvas.style.zIndex = 3;
+canvas.style.top = 1;
+canvas.style.left = 1;
+document.body.appendChild(canvas); 
+
+var body = document.getElementById("canvas");
+for (var index in pointData) {
+  var div = document.createElement("div");
+  div.className = "floater";
+  div.style.top = Math.round((pointData[index].y - lowZ) * stepZ) + yMargin;
+  div.style.left = Math.round((pointData[index].x - lowX) * stepX) + xMargin;
+  body.appendChild(div);
+
+  var title = document.createElement("div");
+  title.className = "floater";
+  title.style.zIndex = 3;
+  title.style.color = "blue";
+  title.style.borderWidth = "0px";
+  var fullTitle = pointData[index].name.replace(" ", "_") + " (" + pointData[index].x + "," + pointData[index].y + ")/"
+      + pointData[index].population;
+  var content = document.createTextNode(fullTitle);
+  title.style.top = Math.round((pointData[index].y - lowZ) * stepZ) + yMargin + 2;
+  title.style.left = Math.round((pointData[index].x - lowX) * stepX) + xMargin - (fullTitle.length * 2);
+  title.appendChild(content);
+  body.appendChild(title);
+}
+
+var midtown = document.createElement("div");
+midtown.className = "floater";
+midtown.style.borderColor = "red";
+midtown.style.borderWidth = "2px";
+midtown.style.borderStyle = "solid";
+midtown.style.top = Math.round(((centerZ / counter) - lowZ) * stepZ) + yMargin;
+midtown.style.left = Math.round(((centerX / counter) - lowX) * stepX) + xMargin;
+body.appendChild(midtown);
+
+  var title2 = document.createElement("div");
+  title2.className = "floater";
+  title2.style.zIndex = 3;
+  title2.style.color = "blue";
+  title2.style.borderWidth = "0px";
+  // alert(centerX + ", " + centerZ);
+  var fullTitle = "(center)" + "(" + Math.round(centerX / counter) + ", " + Math.round(centerZ / counter) + ")";
+  var content = document.createTextNode(fullTitle);
+  title2.style.top = Math.round(((centerZ / counter) - lowZ) * stepZ) + yMargin + 2;
+  title2.style.left = Math.round(((centerX / counter) - lowX) * stepX) + xMargin - (fullTitle.length * 2);
+  title2.appendChild(content);
+  body.appendChild(title2);
+
+var aSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    aSvg.setAttribute('width', xBound);
+    aSvg.setAttribute('height', yBound);
+    body.appendChild(aSvg);
+var aLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    aLine.setAttribute('x1', 210);
+    aLine.setAttribute('y1', 278);
+    aLine.setAttribute('x2', 355);
+    aLine.setAttribute('y2', 270);
+    aLine.setAttribute('stroke', 'green');
+    aLine.setAttribute('stroke-width', 2);
+    /* aSvg.appendChild(aLine); */
+
+for (var outer = 0; outer < edges.length; outer++) {
+    var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('fill', 'none');
+    polygon.setAttribute('stroke', 'purple');
+    polygon.setAttribute('stroke-width', 1);
+	// for (var inner = 0; inner < edges[outer].length; inner++) {
+	for (var inner = 0; inner < edges[outer].length; inner++) {
+		// alert(edges[outer][inner].x + " , " + edges[outer][inner].y);
+		var point = aSvg.createSVGPoint();
+		point.x = Math.round((edges[outer][inner].x - lowX) * stepX) + xMargin + 2;
+		point.y = Math.round((edges[outer][inner].y - lowZ) * stepZ) + yMargin + 2;
+		polygon.points.appendItem(point);
+	}
+    aSvg.appendChild(polygon);
+}
+
+for (var outer = 0; outer < humanEdges.length; outer++) {
+    var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('fill', 'none');
+    polygon.setAttribute('stroke', 'green');
+    polygon.setAttribute('stroke-width', 1);
+	for (var inner = 0; inner < humanEdges[outer].length; inner++) {
+		// alert(edges[outer][inner].x + "," + edges[outer][inner].y);
+		var point = aSvg.createSVGPoint();
+		point.x = Math.round((humanEdges[outer][inner].x - lowX) * stepX) + xMargin + 2;
+		point.y = Math.round((humanEdges[outer][inner].y - lowZ) * stepZ) + yMargin + 2;
+		polygon.points.appendItem(point);
+	}
+    aSvg.appendChild(polygon);
+}
+
+for (var outer = 0; outer < cpEdges.length; outer++) {
+    var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('fill', 'none');
+    polygon.setAttribute('stroke', 'blue');
+    polygon.setAttribute('stroke-width', 1);
+	for (var inner = 0; inner < cpEdges[outer].length; inner++) {
+		// alert(edges[outer][inner].x + "," + edges[outer][inner].y);
+		var point = aSvg.createSVGPoint();
+		point.x = Math.round((cpEdges[outer][inner].x - lowX) * stepX) + xMargin + 2;
+		point.y = Math.round((cpEdges[outer][inner].y - lowZ) * stepZ) + yMargin + 2;
+		polygon.points.appendItem(point);
+	}
+    aSvg.appendChild(polygon);
+}
+
+for (var pointIdx = 0; pointIdx < centerPoints.length; pointIdx++) {
+	//	var point = aSvg.createSVGPoint();
+	// point.x = Math.round((centerPoints[pointIdx].x - lowX) * stepX) + xMargin + 2;
+	// point.y = Math.round((centerPoints[pointIdx].y - lowZ) * stepZ) + yMargin + 2;
+    var point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	point.setAttribute('cx', Math.round((centerPoints[pointIdx].x - lowX) * stepX) + xMargin + 2);
+    point.setAttribute('cy', Math.round((centerPoints[pointIdx].y - lowZ) * stepZ) + yMargin + 2);
+	point.setAttribute('r', 5);
+	point.setAttribute('fill', 'orange');
+	aSvg.appendChild(point);
+}
+</script>
+
+</body>
+</html>

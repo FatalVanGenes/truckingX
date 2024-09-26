@@ -1,0 +1,137 @@
+"C:\Program Files\Java\jdk-13.0.2\bin\java.exe" -ea -Didea.test.cyclic.buffer.size=1048576 "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.3\lib\idea_rt.jar=54504:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.3\bin" -Dfile.encoding=UTF-8 -classpath "C:\Users\MrSteve\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.0\junit-platform-launcher-1.9.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.3\lib\idea_rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.3\plugins\junit\lib\junit5-rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.3\plugins\junit\lib\junit-rt.jar;C:\Users\MrSteve\source\trucking\target\test-classes;C:\Users\MrSteve\source\trucking\target\classes;C:\Users\MrSteve\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.0\junit-jupiter-api-5.9.0.jar;C:\Users\MrSteve\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\MrSteve\.m2\repository\org\junit\platform\junit-platform-commons\1.9.0\junit-platform-commons-1.9.0.jar;C:\Users\MrSteve\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\MrSteve\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.0\junit-jupiter-engine-5.9.0.jar;C:\Users\MrSteve\.m2\repository\org\junit\platform\junit-platform-engine\1.9.0\junit-platform-engine-1.9.0.jar;C:\Users\MrSteve\.m2\repository\org\assertj\assertj-core\3.23.1\assertj-core-3.23.1.jar;C:\Users\MrSteve\.m2\repository\net\bytebuddy\byte-buddy\1.12.10\byte-buddy-1.12.10.jar;C:\Users\MrSteve\.m2\repository\org\mockito\mockito-core\4.11.0\mockito-core-4.11.0.jar;C:\Users\MrSteve\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.19\byte-buddy-agent-1.12.19.jar;C:\Users\MrSteve\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\MrSteve\.m2\repository\org\projectlombok\lombok\1.18.24\lombok-1.18.24.jar;C:\Users\MrSteve\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\MrSteve\.m2\repository\com\google\guava\guava\31.1-jre\guava-31.1-jre.jar;C:\Users\MrSteve\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\MrSteve\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\MrSteve\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\MrSteve\.m2\repository\org\checkerframework\checker-qual\3.12.0\checker-qual-3.12.0.jar;C:\Users\MrSteve\.m2\repository\com\google\errorprone\error_prone_annotations\2.11.0\error_prone_annotations-2.11.0.jar;C:\Users\MrSteve\.m2\repository\com\google\j2objc\j2objc-annotations\1.3\j2objc-annotations-1.3.jar;C:\Users\MrSteve\.m2\repository\org\jetbrains\annotations\23.1.0\annotations-23.1.0.jar" com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit5 commerce.generation.GenerationTest
+var pointData = [
+  {"name": "Carter's Heaven", "x": 243738, "z": 932553},
+  {"name": "Buzzard Bucket", "x": 19784, "z": 794813},
+  {"name": "Dusty Heaven", "x": 470448, "z": 931203},
+  {"name": "Crow Pass", "x": 140177, "z": 489438},
+  {"name": "Wagon Crossing", "x": 378104, "z": 455371},
+  {"name": "Grassy Meadows", "x": 708899, "z": 480929},
+  {"name": "Sawyer's Crossing", "x": 650456, "z": 114900},
+  {"name": "Sky Heaven", "x": 277117, "z": 561842},
+  {"name": "Falling Pitch", "x": 990646, "z": 581537},
+  {"name": "Rattler Hollow", "x": 519066, "z": 135222},
+  {"name": "Cattle Meadows", "x": 314689, "z": 355294},
+  {"name": "Rusty Valley", "x": 144024, "z": 579005},
+  {"name": "Cattle Bucket", "x": 423775, "z": 159762},
+  {"name": "Rising Grove", "x": 415464, "z": 242695},
+  {"name": "Hanging Ridge", "x": 328137, "z": 166642},
+  {"name": "Rising Hill", "x": 273401, "z": 814496},
+  {"name": "Crow Ford", "x": 580087, "z": 811387},
+  {"name": "Dusty Mountain", "x": 766204, "z": 593182},
+  {"name": "Muddy Crossing", "x": 139488, "z": 900621},
+  {"name": "Rising Meadows", "x": 971200, "z": 181446}
+];
+
+
+var edges = [
+{
+"points" : [
+{"x" : 140177, "y" : 489438},
+{"x" : 144024, "y" : 579005},
+{"x" : 378104, "y" : 455371},
+{"x" : 277117, "y" : 561842}
+]
+},{
+"points" : [
+{"x" : 990646, "y" : 581537},
+{"x" : 766204, "y" : 593182},
+{"x" : 708899, "y" : 480929}
+]
+},{
+"points" : [
+{"x" : 139488, "y" : 900621},
+{"x" : 273401, "y" : 814496},
+{"x" : 243738, "y" : 932553}
+]
+},{
+"points" : [
+{"x" : 580087, "y" : 811387},
+{"x" : 470448, "y" : 931203}
+]
+},{
+"points" : [
+{"x" : 314689, "y" : 355294},
+{"x" : 378104, "y" : 455371}
+]
+},{
+"points" : [
+{"x" : 423775, "y" : 159762},
+{"x" : 415464, "y" : 242695},
+{"x" : 328137, "y" : 166642}
+]
+},{
+"points" : [
+{"x" : 519066, "y" : 135222},
+{"x" : 650456, "y" : 114900}
+]
+}
+];
+
+
+var humanEdges = [
+{
+"points" : [
+{"x" : 19784, "y" : 794813},
+{"x" : 139488, "y" : 900621}
+]
+},{
+"points" : [
+{"x" : 971200, "y" : 181446},
+{"x" : 650456, "y" : 114900}
+]
+}
+];
+
+
+var centerPoints = [
+{"x" : 218875, "y" : 882556},
+{"x" : 584761, "y" : 125061},
+{"x" : 525267, "y" : 871295},
+{"x" : 346396, "y" : 405332},
+{"x" : 389125, "y" : 189699},
+{"x" : 821916, "y" : 551882},
+{"x" : 234855, "y" : 521414}
+];
+
+
+var cpEdges = [
+{
+"points" : [
+{"x" : 423775, "y" : 159762},
+{"x" : 423775, "y" : 159762}
+]
+},{
+"points" : [
+{"x" : 580087, "y" : 811387},
+{"x" : 580087, "y" : 811387}
+]
+},{
+"points" : [
+{"x" : 519066, "y" : 135222},
+{"x" : 519066, "y" : 135222}
+]
+},{
+"points" : [
+{"x" : 766204, "y" : 593182},
+{"x" : 766204, "y" : 593182}
+]
+},{
+"points" : [
+{"x" : 314689, "y" : 355294},
+{"x" : 314689, "y" : 355294}
+]
+},{
+"points" : [
+{"x" : 277117, "y" : 561842},
+{"x" : 277117, "y" : 561842}
+]
+},{
+"points" : [
+{"x" : 243738, "y" : 932553},
+{"x" : 243738, "y" : 932553}
+]
+}
+];
+
+
+Process finished with exit code 0
